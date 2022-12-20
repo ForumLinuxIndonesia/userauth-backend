@@ -10,6 +10,10 @@ function generateAccessToken(username) {
   return jwt.sign(username, process.env.TOKEN_SECRET, { expiresIn: '1d' });
 }
 
+app.get('/', (req, res) => {
+  res.send('Its Works!');
+});
+
 app.post('/api/createNewUser', (req, res) => {
   const token = generateAccessToken({ username: req.body.username });
   res.json(token);
