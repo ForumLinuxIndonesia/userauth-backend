@@ -6,6 +6,7 @@ import { $loginValidation } from '#validations/login.validation.js';
 
 import $registerController from '#controllers/register.controller.js';
 import $loginController from '#controllers/login.controller.js';
+import $refreshController from '#controllers/refresh.controller.js';
 
 const $api = new Router();
 
@@ -16,6 +17,7 @@ $api.post(
   $registerController,
 );
 $api.post('/login', $validationMiddleware($loginValidation), $loginController);
+$api.post('/refresh', $refreshController);
 
 export default $api;
 export { $api };

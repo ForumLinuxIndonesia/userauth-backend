@@ -1,5 +1,16 @@
 import jsonwebtoken from 'jsonwebtoken';
 
+const verifyTokenUser = (token, isRefresh = false) => {
+  try {
+    return jsonwebtoken.verify(
+      token,
+      isRefresh ? process.env.JWT_SECRET_REFRESH : process.env.JWT_SECRET,
+    );
+  } catch {
+    return undefined;
+  }
+};
+
 const authSignUser = (user) => {
   const id = Buffer.from(
     `${user[String.fromCharCode(95, 105, 100)]}:${user.username}`,
@@ -29,14 +40,16 @@ const authSignUser = (user) => {
   };
 };
 
-const verifyTokenUser = (token) => {
-  try {
-    jsonwebtoken.verify(token, process.env.JWT_SECRET);
-    return true;
-  } catch {
-    return false;
-  }
+const renewTokenUser = (refreshToken) => {
+  const verifyAndDecoded = verifyTokenUser(refreshToken, true);
+  if (!verifyAndDecoded) return 'invalid refresh token';
+
+  const newAccessToken = jsonwebtoken.sign({
+    id: verifyAndDecoded.id,
+  });
+
+  return { token: newAccessToken };
 };
 
 export default {};
-export { authSignUser, verifyTokenUser };
+export { authSignUser, verifyTokenUser, renewTokenUser };
