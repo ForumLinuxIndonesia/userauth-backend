@@ -5,8 +5,8 @@ import express from 'express';
 import helmet from 'helmet';
 // import jwt from 'jsonwebtoken';
 import morgan from 'morgan';
-import logger from './logger';
-import DB from './database';
+import logger from './logger.js';
+import DB from './database.js';
 
 const app = express();
 app.use(cors());
