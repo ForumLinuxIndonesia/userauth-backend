@@ -1,13 +1,15 @@
 services:
-  webhook:
+  app:
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    image: "waxarsatia/userauth-backend:latest"
+    image: "${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
     ports:
-      - "4001:80"
-    restart: unless-stopped
+      - "${DOCKER_FORWARD_PORT}:${DOCKER_LISTEN_PORT}"
+    restart: "unless-stopped"
+  mongodb:
+    image: "mongo:latest"
 
 networks:
   default:
-    name: "gacha"
+    name: "${DOCKER_NETWORK}"
     external: true

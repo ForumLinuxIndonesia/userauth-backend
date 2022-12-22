@@ -80,7 +80,7 @@ app.post('/api/newuser', async (req, res) => {
   }
 });
 
-app.listen(80, () => console.log('Ready on port 80'));
+app.listen(Number(process.env.LISTEN_PORT) || 3000, () => console.log(`Ready on port ${process.env.LISTEN_PORT || 3000}`));
 
 // function generateAccessToken(username) {
 //   return jwt.sign(username, process.env.TOKEN_SECRET, { expiresIn: '1d' });
