@@ -1,5 +1,10 @@
 services:
   app:
+    environment:
+      - LISTEN_PORT
+      - MONGODB_URL
+      - MONGODB_USERAUTHMODEL
+      - TOKEN_SECRET
     extra_hosts:
       - "host.docker.internal:host-gateway"
     image: "${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
@@ -8,6 +13,7 @@ services:
     restart: "unless-stopped"
   mongodb:
     image: "mongo:latest"
+    restart: "unless-stopped"
 
 networks:
   default:
