@@ -3,7 +3,11 @@ const $validationMiddleware = (...validations) => {
   return async (req, res, next) => {
     try {
       const execute = validations.find((v) => !v(req.body));
-      if (execute) return res.status(400).json({ ok: false, success: 'incorrect payload' });
+      if (execute) {
+        return res
+          .status(400)
+          .json({ ok: false, success: 'incorrect payload' });
+      }
 
       return next();
     } catch (e) {

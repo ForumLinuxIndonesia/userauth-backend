@@ -16,14 +16,14 @@ const loginController = async (req, res) => {
     ],
   });
 
-  if (!user)
+  if (!user) {
     return res
       .status(401)
       .json({ ok: false, message: "Couldn't find that user" });
+  }
 
   const hashCompare = await bcrypt.compare(password, user.password);
-  if (!hashCompare)
-    return res.status(401).json({ ok: false, message: 'Invalid credentials' });
+  if (!hashCompare) return res.status(401).json({ ok: false, message: 'Invalid credentials' });
 
   const token = authSignUser(user);
   return res.status(201).json({ ok: true, data: token });

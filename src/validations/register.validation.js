@@ -16,7 +16,8 @@ const $registerValidation = createAjv({
     },
     email: {
       type: 'string',
-      pattern: '^[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*$',
+      pattern:
+        '^[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*$',
     },
     password: {
       type: 'string',

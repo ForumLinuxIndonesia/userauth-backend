@@ -6,7 +6,8 @@ const createService = async (body) => {
     $or: [
       {
         username: body.username.toLowerCase(),
-      }, {
+      },
+      {
         email: body.email,
       },
     ],
