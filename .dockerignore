@@ -1,7 +1,7 @@
+.eslintrc
 .git
-node_modules
-.eslintrc.json
 .gitignore
-LICENSE
-README.md
 docker-compose.yml
+LICENSE
+node_modules
+README.md

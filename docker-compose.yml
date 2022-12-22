@@ -1,7 +1,13 @@
 services:
-  app:
-    build: .
-    network_mode: bridge
+  webhook:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    image: "waxarsatia/userauth-backend:latest"
     ports:
-      - "4001:3000"
-    pull_policy: "build"
+      - "4001:80"
+    restart: unless-stopped
+
+networks:
+  default:
+    name: "gacha"
+    external: true
