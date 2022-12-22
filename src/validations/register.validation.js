@@ -1,11 +1,34 @@
-import ow from 'ow';
+import { createAjv } from '#validations/create.js';
 
-const $registerValidation = ow.object.exactShape({
-  firstName: ow.string.alphabetical.nonEmpty.minLength(3),
-  lastName: ow.optional.string.alphabetical.nonEmpty.minLength(3),
-  email: ow.string.nonEmpty.validate((value) => /^[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*$/.test(value)),
-  username: ow.string.nonEmpty.minLength(5),
-  password: ow.string.nonEmpty.alphabetical,
+const $registerValidation = createAjv({
+  type: 'object',
+  properties: {
+    firstName: {
+      type: 'string',
+      minLength: 3,
+      pattern: '[a-zA-Z]+',
+    },
+    lastName: {
+      type: 'string',
+      minLength: 3,
+      default: '',
+      pattern: '[a-zA-Z]+',
+    },
+    email: {
+      type: 'string',
+      pattern: '^[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*$',
+    },
+    password: {
+      type: 'string',
+      minLength: 8,
+    },
+    username: {
+      type: 'string',
+      minLength: 3,
+      maxLength: 50,
+    },
+  },
+  required: ['firstName', 'email', 'password'],
 });
 
 export default $registerValidation;

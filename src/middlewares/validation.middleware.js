@@ -1,16 +1,13 @@
-import ow from 'ow';
-
 const $validationMiddleware = (...validations) => {
   if (!Array.isArray(validations)) throw new TypeError('Invalid validations');
   return async (req, res, next) => {
     try {
-      validations.forEach((validation) => {
-        ow(req.body, validation);
-      });
+      const execute = validations.find((v) => !v(req.body));
+      if (execute) return res.status(400).json({ ok: false, success: 'incorrect payload' });
 
       return next();
     } catch (e) {
-      return res.status(400).json({ success: false, message: e.message });
+      return res.status(400).json({ ok: false, message: e.message });
     }
   };
 };
