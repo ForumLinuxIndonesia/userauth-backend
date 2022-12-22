@@ -7,6 +7,8 @@ import morgan from 'morgan';
 import logger from '#utils/logger.js';
 import { connectToDB } from '#utils/database.js';
 
+import $api from '#routes/api.js';
+
 const app = express();
 app.use(cors());
 app.use(helmet());
@@ -34,6 +36,8 @@ app.get('/', (req, res) => {
     });
   }
 });
+
+app.use('/api', $api);
 
 app.listen(Number(process.env.LISTEN_PORT) || 3000, async () => {
   await connectToDB();
