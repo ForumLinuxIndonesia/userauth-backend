@@ -1,7 +1,5 @@
 import 'dotenv/config';
-import mongoose, {
-  connect, model, Schema,
-} from 'mongoose';
+import mongoose, { connect, model, Schema } from 'mongoose';
 
 connect(process.env.MONGODB_URL);
 
@@ -17,6 +15,4 @@ const UserAuthSchema = new Schema({
 const DB = model(process.env.MONGODB_USERAUTHMODEL, UserAuthSchema);
 
 export default DB;
-export {
-  mongoose,
-};
+export { mongoose };
