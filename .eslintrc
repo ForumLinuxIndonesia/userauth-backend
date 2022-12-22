@@ -12,6 +12,7 @@
   "rules": {
     "no-console": "off",
     "no-plusplus": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "import/no-unresolved": "off"
   }
 }

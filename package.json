@@ -2,7 +2,7 @@
   "name": "userauth-backend",
   "version": "1.0.0",
   "description": "Backend to handle user Authentication (Login and Register)",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
@@ -36,5 +36,12 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "husky": "^8.0.0"
+  },
+  "imports": {
+    "#utils/*": "./src/utils/*",
+    "#controllers/*": "./src/controllers/*",
+    "#services/*": "./src/services/*",
+    "#routes/*": "./src/routes/*",
+    "#models/*": "./src/models/*"
   }
 }
