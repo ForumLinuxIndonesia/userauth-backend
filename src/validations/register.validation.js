@@ -9,3 +9,4 @@ const $registerValidation = ow.object.exactShape({
 });
 
 export default $registerValidation;
+export { $registerValidation };

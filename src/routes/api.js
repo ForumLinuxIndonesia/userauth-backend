@@ -3,7 +3,7 @@ import { Router } from 'express';
 import { $validationMiddleware } from '#middlewares/validation.middleware.js';
 import { $registerValidation } from '#validations/register.validation.js';
 
-import $registerController from '#controllers/register.controller';
+import $registerController from '#controllers/register.controller.js';
 
 const $api = new Router();
 
