@@ -21,7 +21,7 @@ app.use(
         logger.info(message.trim());
       },
     },
-  })
+  }),
 );
 
 app.get('/', (req, res) => {
@@ -51,11 +51,12 @@ app.post('/api/newuser', async (req, res) => {
       password: body.password,
     };
 
-    const validationMessage = await validateNotNullObjects(dataUser);
-    if (validationMessage)
+    const validationMessage = validateNotNullObjects(dataUser);
+    if (validationMessage) {
       return res
         .status(400)
         .send({ success: false, message: validationMessage });
+    }
 
     const usedNameOrMail = await DB.findOne({
       $or: [
@@ -68,10 +69,11 @@ app.post('/api/newuser', async (req, res) => {
       ],
     }).lean();
 
-    if (usedNameOrMail)
+    if (usedNameOrMail) {
       return res
         .status(400)
         .json({ success: false, message: 'Username or email is already used' });
+    }
 
     const hash = await bcrypt.hash(dataUser.password, 10);
     dataUser.password = hash;
@@ -91,6 +93,4 @@ app.post('/api/newuser', async (req, res) => {
   }
 });
 
-app.listen(Number(process.env.LISTEN_PORT) || 3000, () =>
-  console.log(`Ready on port ${process.env.LISTEN_PORT || 3000}`)
-);
+app.listen(Number(process.env.LISTEN_PORT) || 3000, () => console.log(`Ready on port ${process.env.LISTEN_PORT || 3000}`));

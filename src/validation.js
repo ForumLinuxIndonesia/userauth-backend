@@ -1,18 +1,12 @@
-import assert from 'assert';
-
-export const validateNotNullObjects = (object) => {
+const validateNotNullObjects = (object) => {
   if (typeof object !== 'object') return "The entry isn't an object";
 
-  for (const [key, value] of Object.entries(object)) {
-    try {
-      assert.ok(
-        !!value && typeof value !== 'undefined' && value != null,
-        `${key} is needed`
-      );
-    } catch (e) {
-      return e.message;
-    }
-  }
-
+  const nullValue = Object.entries(object).find(
+    ([, value]) => !value || value == null || typeof value === 'undefined',
+  );
+  if (nullValue) return `${nullValue[0]} is needed`;
   return undefined;
 };
+
+export { validateNotNullObjects };
+export default {};
