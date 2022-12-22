@@ -11,3 +11,4 @@ $api.get('/', (_, res) => res.status(200).json({ message: 'Hello World' }));
 $api.post('/register', $validationMiddleware($registerValidation), $registerController);
 
 export default $api;
+export { $api };
