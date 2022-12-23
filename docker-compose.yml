@@ -5,6 +5,13 @@ services:
       - JWT_SECRET_REFRESH
       - LISTEN_PORT
       - MONGODB_URL
+      - MAIL_HOST
+      - MAIL_PORT
+      - MAIL_USER
+      - MAIL_PASS
+      - DKIM_DOMAIN
+      - DKIM_KEYSELECTOR
+      - DKIM_PRIVKEY
     extra_hosts:
       - "host.docker.internal:host-gateway"
     image: "${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
