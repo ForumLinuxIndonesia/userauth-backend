@@ -2,6 +2,7 @@
 .git
 .github
 .gitignore
+.husky
 docker-compose.yml
 Dockerfile
 LICENSE
