@@ -1,10 +1,10 @@
 services:
   app:
     environment:
+      - JWT_SECRET
+      - JWT_SECRET_REFRESH
       - LISTEN_PORT
       - MONGODB_URL
-      - MONGODB_USERAUTHMODEL
-      - TOKEN_SECRET
     extra_hosts:
       - "host.docker.internal:host-gateway"
     image: "${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
@@ -12,6 +12,9 @@ services:
       - "${DOCKER_FORWARD_PORT}:${DOCKER_LISTEN_PORT}"
     restart: "unless-stopped"
   mongodb:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
     image: "mongo:latest"
     restart: "unless-stopped"
     volumes:

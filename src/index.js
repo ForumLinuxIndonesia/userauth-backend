@@ -26,12 +26,12 @@ app.use(
 
 app.get('/', (req, res) => {
   try {
-    return res.send({ success: true });
+    return res.send({ ok: true });
   } catch (error) {
     logger.error(error);
 
     return res.status(500).send({
-      success: false,
+      ok: false,
       message: `Failed to process request ${req.url}`,
     });
   }
