@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import generateTemplate from '#utils/emailTemplate';
+import generateTemplate from '#utils/emailTemplate.js';
 
 const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
