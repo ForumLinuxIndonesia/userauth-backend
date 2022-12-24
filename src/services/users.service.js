@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import argon2 from 'argon2';
 import crypto from 'crypto';
 import { UserModel } from '#models/user.js';
 import { sendVerifyCode } from '#utils/mailer.js';
@@ -18,7 +18,7 @@ const createUser = async (body) => {
   if (usedNameOrMail) return { ok: false, message: 'Username or email is already exists!' };
   const data = new UserModel(body);
 
-  data.password = await bcrypt.hash(body.password, 10);
+  data.password = await argon2.hash(body.password);
   data.verifyCode = crypto.randomBytes(4).toString('hex');
   data.isVerified = false;
   await data.save();

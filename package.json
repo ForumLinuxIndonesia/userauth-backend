@@ -22,7 +22,7 @@
   "type": "module",
   "dependencies": {
     "ajv": "^8.11.2",
-    "bcrypt": "^5.1.0",
+    "argon2": "^0.30.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
