@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendMail = async ({
-  from = 'Gacha Email Verification', to, subject, html,
+  from = 'Gacha Email Verification', to, subject = 'Register Account Verification', html,
 }) => {
   await transporter.sendMail({
     from: `"${from}" <${process.env.MAIL_USER}>`,
