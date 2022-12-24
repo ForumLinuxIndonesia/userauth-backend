@@ -5,7 +5,8 @@ const $verifyValidation = createAjv({
   properties: {
     verifyCode: {
       type: 'string',
-      length: 8,
+      minLength: 8,
+      maxLength: 8,
     },
   },
   required: ['verifyCode'],
