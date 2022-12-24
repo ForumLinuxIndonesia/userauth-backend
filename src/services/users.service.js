@@ -22,12 +22,15 @@ const createUser = async (body) => {
   data.isVerified = false;
   await data.save();
 
-
-  return { ok: true, message: 'Successfuly created', data: {
-    verifyLink: `localhost:${process.env.LISTEN_PORT}/api/verify`,
-    type:"post",
-    verifyCode:data.verifyCode
-  } };
+  return {
+    ok: true,
+    message: 'Successfuly created',
+    data: {
+      verifyLink: `localhost:${process.env.LISTEN_PORT}/api/verify`,
+      type: 'post',
+      verifyCode: data.verifyCode,
+    },
+  };
 };
 
 export default createUser;
