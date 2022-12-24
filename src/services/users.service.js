@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import { UserModel } from '#models/user.js';
-import { sendVerifyCode } from '#utils/mailer.js';
 
 const createUser = async (body) => {
   const usedNameOrMail = await UserModel.findOne({
@@ -23,9 +22,12 @@ const createUser = async (body) => {
   data.isVerified = false;
   await data.save();
 
-  await sendVerifyCode({ to: data.email, verifyCode: data.verifyCode });
 
-  return { ok: true, message: 'Successfuly created' };
+  return { ok: true, message: 'Successfuly created', data: {
+    verifyLink: `localhost:${process.env.LISTEN_PORT}/api/verify`,
+    type:"post",
+    verifyCode:data.verifyCode
+  } };
 };
 
 export default createUser;

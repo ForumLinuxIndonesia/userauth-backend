@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
-    "lint": "eslint \"src/**/*.js\" --fix"
+    "lint": "eslint \"src/**/*.js\" --fix",
+    "start:dev": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,13 @@
     "eslint": "^8.30.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "husky": "^8.0.0"
+    "husky": "^8.0.0",
+    "nodemon": "^2.0.20"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ]
   },
   "imports": {
     "#utils/*": "./src/utils/*",
