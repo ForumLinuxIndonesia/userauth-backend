@@ -1,7 +1,9 @@
 import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 import { UserModel } from '#models/user.js';
+import { sendVerifyCode } from '#utils/mailer.js';
 
-const createService = async (body) => {
+const createUser = async (body) => {
   const usedNameOrMail = await UserModel.findOne({
     $or: [
       {
@@ -17,10 +19,14 @@ const createService = async (body) => {
   const data = new UserModel(body);
 
   data.password = await bcrypt.hash(body.password, 10);
+  data.verifyCode = crypto.randomBytes(4).toString('hex');
+  data.isVerified = false;
   await data.save();
+
+  await sendVerifyCode({ to: data.email, verifyCode: data.verifyCode });
 
   return { ok: true, message: 'Successfuly created' };
 };
 
-export default {};
-export { createService };
+export default createUser;
+export { createUser };

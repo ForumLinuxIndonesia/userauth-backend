@@ -9,6 +9,11 @@ const UserModel = model(
       username: String,
       password: String,
       email: String,
+      verifyCode: String,
+      isVerified: {
+        type: Boolean,
+        default: false,
+      },
     },
     {
       timestamps: true,

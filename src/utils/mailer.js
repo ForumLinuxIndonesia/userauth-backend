@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import generateTemplate from '#utils/emailTemplate';
 
 const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
@@ -15,16 +16,16 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendMail = async ({
-  from = 'Gacha Email Verification', to, subject = 'Register Account Verification', html,
+const sendVerifyCode = async ({
+  from = 'Gacha Email Verification', to, subject = 'Register Account Verification', verifyCode,
 }) => {
   await transporter.sendMail({
     from: `"${from}" <${process.env.MAIL_USER}>`,
     to,
     subject,
-    html,
+    html: generateTemplate(verifyCode),
   });
 };
 
-export default sendMail;
-export { sendMail };
+export default sendVerifyCode;
+export { sendVerifyCode };
