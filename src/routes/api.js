@@ -3,7 +3,7 @@ import { Router } from 'express';
 import { $validationMiddleware } from '#middlewares/validation.middleware.js';
 import { $registerValidation } from '#validations/register.validation.js';
 import { $loginValidation } from '#validations/login.validation.js';
-import { $verifyValidation } from '#validations/verify.validation';
+import { $verifyValidation } from '#validations/verify.validation.js';
 
 import $registerController from '#controllers/register.controller.js';
 import $loginController from '#controllers/login.controller.js';
