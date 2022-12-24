@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "#utils/*": [
+        "./src/utils/*"
+      ],
+      "#controllers/*": [
+        "./src/controllers/*"
+      ],
+      "#services/*": [
+        "./src/services/*"
+      ],
+      "#routes/*": [
+        "./src/routes/*"
+      ],
+      "#models/*": [
+        "./src/models/*"
+      ],
+      "#validations/*": [
+        "./src/validations/*"
+      ],
+      "#middlewares/*": [
+        "./src/middlewares/*"
+      ]
+    },
+    "target": "ESNext",
+  },
+  "exclude": [
+    "node_modules",
+  ]
+}
