@@ -14,7 +14,7 @@ const loginController = async (req, res) => {
         email,
       },
     ],
-  });
+  }).lean();
 
   if (!user) {
     return res
