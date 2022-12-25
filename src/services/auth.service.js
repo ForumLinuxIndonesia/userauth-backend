@@ -44,9 +44,12 @@ const renewTokenUser = (refreshToken) => {
   const verifyAndDecoded = verifyTokenUser(refreshToken, true);
   if (!verifyAndDecoded) return 'invalid refresh token';
 
-  const newAccessToken = jsonwebtoken.sign({
-    id: verifyAndDecoded.id,
-  });
+  const newAccessToken = jsonwebtoken.sign(
+    {
+      id: verifyAndDecoded.id,
+    },
+    process.env.JWT_SECRET_REFRESH,
+  );
 
   return { token: newAccessToken };
 };

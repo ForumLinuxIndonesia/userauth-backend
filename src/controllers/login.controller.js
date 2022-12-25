@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import argon2 from 'argon2';
 import { UserModel } from '#models/user.js';
 import { authSignUser } from '#services/auth.service.js';
 
@@ -14,7 +14,7 @@ const loginController = async (req, res) => {
         email,
       },
     ],
-  });
+  }).lean();
 
   if (!user) {
     return res
@@ -22,7 +22,11 @@ const loginController = async (req, res) => {
       .json({ ok: false, message: "Couldn't find that user" });
   }
 
-  const hashCompare = await bcrypt.compare(password, user.password);
+  if (!user.isVerified) {
+    return res.status(403).json({ ok: false, message: 'User didn\'t verified yet' });
+  }
+
+  const hashCompare = await argon2.verify(user.password, password);
   if (!hashCompare) return res.status(401).json({ ok: false, message: 'Invalid credentials' });
 
   const token = authSignUser(user);

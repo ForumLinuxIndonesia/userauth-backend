@@ -1,3 +1,4 @@
+.env.example
 .eslintrc
 .git
 .github
@@ -5,6 +6,7 @@
 .husky
 docker-compose.yml
 Dockerfile
+jsconfig.json
 LICENSE
 node_modules
 README.md

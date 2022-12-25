@@ -12,11 +12,12 @@ const $loginValidation = createAjv({
       type: 'string',
       pattern:
         '^[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*$',
+      maxLength: 50,
     },
     password: {
       type: 'string',
       minLength: 8,
-      maxLength: 100,
+      maxLength: 50,
     },
   },
   dependentRequired: {
