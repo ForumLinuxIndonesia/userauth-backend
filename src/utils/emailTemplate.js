@@ -255,7 +255,7 @@ const generateTemplate = (verifyCode) => `<!DOCTYPE html>
                         <td align="center" bgcolor="#e9ecef"
                             style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
                             <p style="margin: 0;">You received this email because we received a request for
-                                [type_of_action] for your account. If you didn't request [type_of_action] you can safely
+                                Register for your account. If you didn't request Register you can safely
                                 delete this email.</p>
                         </td>
                     </tr>
@@ -266,7 +266,7 @@ const generateTemplate = (verifyCode) => `<!DOCTYPE html>
                         <td align="center" bgcolor="#e9ecef"
                             style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
                             <p style="margin: 0;">To stop receiving these emails, you can <a
-                                    href="https://www.blogdesire.com" target="_blank">unsubscribe</a> at any time.</p>
+                                    href="https://www.gacha.ptnat.com" target="_blank">unsubscribe</a> at any time.</p>
                             <p style="margin: 0;">Gacha System - 2022</p>
                         </td>
                     </tr>
