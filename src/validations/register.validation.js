@@ -33,7 +33,7 @@ const $registerValidation = createAjv({
       maxLength: 50,
     },
   },
-  required: ['firstName', 'email', 'password'],
+  required: ['firstName', 'username', 'email', 'password'],
 });
 
 export default $registerValidation;
